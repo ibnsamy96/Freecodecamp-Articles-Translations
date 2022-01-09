@@ -1,4 +1,4 @@
-# مثال على console.log() في الجافاسكريبت - كيف تطبع محتوى في وحدة التحكم (console) في لغة الجافاسكريبت
+# مثال على console.log() في الجافاسكريبت - كيف تطبع المحتوى في وحدة التحكم (console) في لغة الجافاسكريبت
 
 ![JavaScript Console.log() Example – How to Print to the Console in JS](https://www.freecodecamp.org/news/content/images/size/w2000/2020/09/fCC_-Console.log.png)
 
