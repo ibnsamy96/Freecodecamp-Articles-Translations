@@ -90,7 +90,7 @@ numbers.forEach((number, index, array) => {
 
 يمكنك في ذلك الفيديو مشاهدة مثال للمرور على عناصر مصفوفة باستخدام طريقة forEach( ):
 
-[رابط فيديو الشرح المستخدم من قِبل الكاتب](https://www.youtube.com/watch?v=E2GawbHDFfs)
+[رابط فيديو الشرح المستخدم من قِبل الكاتب باللغة الإنجليزية](https://www.youtube.com/watch?v=E2GawbHDFfs)
 
 ## دعم المتصفحات
 
