@@ -1,70 +1,71 @@
-# كيف تتحقق من النماذج التفاعلية (Reactive Forms) في إطار عمل Angular
+# كيف تتحقق (Validate) من النماذج التفاعلية (Reactive Forms) في إطار عمل Angular
 
 ![How to Validate Angular Reactive Forms](https://cdn-media-2.freecodecamp.org/w1280/5f9c9e95740569d1a4ca3de6.jpg)
 
 ## مقدمة
 
-في هذا المقال، سنتعرف على عمليات التحقق (Validations) من صحة النماذج التفاعلية في إطار عمل Angular. سننشئ نموذج تسجيل بسيط لمستخدم جديد وننفذ بعض عمليات التحقق (Validations) باستخدام المُدقّقات (Validators) المُدمجة في Angular. و بالإضافة إلى ذلك، سنقوم بعمل بعض المُدقّقات (Validators) الخاصة بنا لتنفيذ بعض عمليات التحقق للنموذج التفاعلي (Reactive Form).
+في هذا المقال، سنتعرف على عمليات التحقق (Validations) من صحة النماذج التفاعلية في إطار عمل Angular. سننشئ نموذج تسجيل بسيط لمستخدم جديد وننفذ بعض عمليات التحقق (Validations) باستخدام المُدقّقات (Validators) المُدمجة في Angular. و بالإضافة إلى ذلك، سنقوم ببناء بعض المُدقّقات (Validators) الخاصة بنا لتنفيذ بعض عمليات التحقق للنموذج التفاعلي (Reactive Form).
 
 سنعمل على التحقق من النقاط التالية خلال استعراضنا للـ Validations في هذا المقال:
 
 - سنتحقق من توفر اسم المستخدم
-- سنتحقق من نمط (Pattern) كلمة المرور
-- سنتحقق من تطابق كلمة المرور المدخلة في حقلين (Two Fields) مختلفين
+- سنتحقق من توافق كلمة المرور مع نمط (Pattern) معيّن
+- سنتحقق من تطابق كلمة المرور المدخلة في حقلين مختلفين (Two Fields)
 
-ألق نظرة على التطبيق الذي سنصممه أثناء العمل.
+ألق نظرة على التطبيق الذي سنبنيه في هذا المقال.
 
 ![](https://www.freecodecamp.org/news/content/images/2019/12/reactiveFormValidation.gif)
 
-## Prerequisites
+## الأدوات الأساسية التي تحتاجها
 
-- Install Visual Studio code from [here](https://code.visualstudio.com/)
-- Install the latest version of Angular CLI from [here](https://cli.angular.io/)
+- قم بتثبيت Visual Studio Code من [هنا](https://code.visualstudio.com/)
+- قم بتثبيت أحدث إصدار من Angular CLI من [هنا](https://cli.angular.io/)
 
-## Source Code
+## الكود المصدري
 
-Get the source code from [GitHub](https://github.com/AnkitSharma-007/angular-forms-validation).
+احصل على شفرة المصدر من [مستودع أكواد كاتب المقال على GitHub](https://github.com/AnkitSharma-007/angular-forms-validation)
 
-## Create the Angular app
+## إنشاء تطبيق Angular
 
-Navigate to the folder where you want to create your project file. Open a command window and run the command shown below:
+انتقل إلى المجلد حيث تريد إنشاء ملف المشروع الخاص بك. افتح نافذة الأوامر (Commands Window) وقم بتنفيذ الأمر التالي:
 
-```
+```bash
 ng new angular-forms-validation --routing=false --style=scss
 ```
 
-We are specifying the command to create a new Angular application. The option to create the routing module is set to false and the style files extension is set to `scss`. This command will create the Angular project with the name `angular-forms-validation`.
+بكتابتنا لهذا الـ Command نحدد أننا نرغب بإنشاء تطبيق Angular جديد باسم `angular-Forms-validation` و بدون إضافة Routing. كذلك حددنا أننا سنضيف الـ Styles باستخدام ملفات "scss".
 
-Change directories to the new project and open the project in VS Code using the set of command shown below:
+انتقل إلى مجلّد المشروع الجديد وافتحه في VS Code باستخدام الـ Commands الموضحة:
 
-```
+```bash
 cd angular-forms-validation
 code .
 ```
 
-## Install Bootstrap
+## تثبيت Bootstrap
 
-Run the following command to install the Bootstrap library:
+قم بكتابة الأمر التالي لتثبيت مكتبة Bootstrap:
 
-```
+```bash
 npm install bootstrap --save
 ```
 
-Add the following import definition in the `styles.scss` file:
+و أضف سطر الاستيراد التالي في ملف `styles.scss`:
 
-```
+```css
 @import "~bootstrap/dist/css/bootstrap.css";
 ```
 
-## Create the validation service
+## إنشاء Service للتحقق من صحة بيانات الـ Form
 
-Run the following command to create a new service:
+قم بكتابة الأمر التالي لإنشاء Service جديدة:
 
-```
+```bash
 ng g s services\customvalidation
 ```
 
-This command will create a folder named services that has two files in it – `customvalidation.service.ts` and `customvalidation.service.spec.ts`. Open the `customvalidation.service.ts` file and put the following code in it:
+سينشئ هذا الأمر مجلدًا باسم 'services' يحتوي على ملف "customvalidation.service.ts" و ملف "customvalidation.service.spec.ts".  
+افتح ملف "customvalidation.service.ts" وضع الكود التالي به:
 
 ```js
 import { Injectable } from "@angular/core";
@@ -129,34 +130,34 @@ export class CustomvalidationService {
 }
 ```
 
-The method `patternValidator` is used to validate the password pattern in our form. The parameter for this method is of type `AbstractControl` which is a base class for the `FormControl`.
+يتم استخدام دالة `patternValidator` للتحقق من صحة نمط (Patterm) كلمات المرور في النموذج الخاص بنا. الـ Parameter لهذه الـ Method من نوع `AbstractControl` والذي يعتبر الـ Class الأساسية للـ `FormControl`.
 
-We will use a regular expression to validate the password. We will validate the following four conditions using the regular expression:
+سنستخدم التعبير النَمَطِي (Regular Expression) للتحقق من صحة كلمة المرور حيث سنتحقق من الشروط الأربعة التالية:
 
-- The password should be a minimum of eight characters long.
-- It has at least one lower case letter.
-- It has at least one upper case letter.
-- It has at least one number.
+- يجب ألا تقل أحرف كلمة المرور عن ثمانية أحرف.
+- يجب أن تحتوي على حرف صغير واحد على الأقل.
+- يجب أن تحتوي على حرف كبير واحد على الأقل.
+- يجب أن تحتوى على رقم واحد على الأقل.
 
-If the password fails the regex check, we will set the `invalidPassword` property to true.
+إذا فشلت كلمة المرور في فحص regex ، فسنقوم بتغيير قيمة `invalidPassword` إلى "true".
 
-The method `MatchPassword` is used to compare the passwords in two fields. This method will accept two parameters of type string. These parameters represent the name of the fields to be matched. We will get the `FormControl` for these two fields and then match the values in them. If the values do not match, we will set the `passwordMismatch` property to true.
+تُستخدم دالة `MatchPassword` لمقارنة كلمات المرور في حقلين. ستقبل هذه الدالة Two Parameters من نوع string. تمثل هذه الـ parameters قيم الـ name attributes للحقول المطلوب مطابقتها. و عن طريق الـ `FormControl` لهذين الحقلين نطابق القيم الموجودة فيهما. إذا كانت القيم غير متطابقة ، فسنقوم بتغيير قيمة `passwordMismatch` إلى "true".
 
-The method `userNameValidator` is used to verify whether the username is already taken or not. This method will accept a parameter of type `AbstractControl`. We will check if the value of this field is present in a static array, `UserList`. If the value entered by the user is already present, we will set the `userNameNotAvailable` property to true.
+بينما يتم استخدام `userNameValidator` للتحقق مما إذا كان اسم المستخدم مستخدمًا بالفعل. ستقبل هذه الدالة parameter من النوع `AbstractControl`. سوف نتحقق مما إذا كانت قيمة هذا الحقل موجودة في مصفوفة `UserList`. إذا كانت القيمة التي أدخلها المستخدم موجودة بالفعل ، فسنقوم بتغيير قيمة `userNameNotAvailable` إلى "true".
 
-We are using the `setTimeout` function to invoke this check every two seconds. This will ensure that the error will be thrown after two seconds from the time the user stops typing in the field.
+و تُستخدم `setTimeout` لعمل استدعاء (Invoking) لهذه العملية كل ثانيتين مما سيضمن ظهور الخطأ بعد ثانيتين من وقت توقف المستخدم عن الكتابة في الحقل.
 
-> For the sake of simplicity of this article, we are using a static array to search for the availability of user names. Ideally, it should be a service call to the server to search the value in a database.
+> من أجل تبسيط هذه المقالة ، نستخدم مصفوفة للبحث عن توفر أسماء المستخدمين بينما في الحالة الطبيعية يتم إرسال طلب (Request) للخادم (Server) للبحث عن اسم المستخدم في قاعدة البيانات (Database).
 
-## Create the reactive form component
+## إنشاء مكوّن النموذج التفاعلي (The Reactive Form Component)
 
-Run the following command to create the reactive-form component:
+قم بكتابة الأمر التالي لإنشاء مكوّن النموذج التفاعلي:
 
-```
+```bash
 ng g c reactive-form
 ```
 
-Open `reactive-form.component.ts` and put the following code in it:
+افتح ملف `reactive-form.component.ts` و ضع الكود التالي به:
 
 ```js
 import { Component, OnInit } from '@angular/core';
@@ -206,13 +207,13 @@ export class ReactiveFormComponent implements OnInit {
 }
 ```
 
-We will create a variable `registerForm` of type `FormGroup`. In the `ngOnInit` method, we will set the controls for the form using the `FormBuilder` class. All the fields are set as a required field for this form. We will invoke the `userNameValidator` method of the service using the bind function.
+سنقوم بإنشاء متغير `registerForm` من النوع `FormGroup` و في دالة `ngOnInit` سنقوم بتحديد عناصر تحكُّم النموذج (Form Controls) باستخدام Class معينة و هي `FormBuilder`. تم تحديد كافة حقول النموذج كحقول إجبارية (Required). سنقوم بعمل Invoking لدالة `userNameValidator` الموجودة في الـ '`customValidator` Service' مع استخدام دالة الربط (Bind).
 
-For the password field, we will use the compose method to merge in multiple validators into a single function. We will also invoke the `MatchPassword` method and pass the name of the `password` and `confirmPassword` form controls as parameters.
+بالنسبة لحقل كلمة المرور ، سنستخدم دالة الإنشاء (Compose) لدمج عدة Validators في دالة واحدة. سنقوم أيضًا بعمل Invoking لدالة `MatchPassword` و تمرير قيم الـ name attributes لعناصر تحكم النموذج `password` و `ConfirmPassword` كـ parameters.
 
-The `registerFormControl` property will return the form controls of the form. The `onSubmit` method will print the content of the form on the console if the form is valid and submitted successfully.
+أما دالة `registerFormControl` فهي ستُرجِع (Return) عناصر تحكم النموذج. و دالة "onSubmit" ستطبع محتوى النموذج في الـ Console إذا كان النموذج صالحًا وتم إرساله بنجاح.
 
-Open `reactive-form.component.html` and put the following code in it:
+افتح ملف `reactive-form.component.html` و اكتب الكود التالي به:
 
 ```html
 <div class="container">
@@ -322,17 +323,19 @@ Open `reactive-form.component.html` and put the following code in it:
 </div>
 ```
 
-We will create a reactive form and use the Bootstrap card for styling. The card header will contain a title whereas the card body will have the form fields. We will bind the `formGroup` property of the `<form>` tag to the name of our form which is `registerForm`. The `onSubmit` method will be invoked on submitting the form. We will also bind the `formControlName` property of each input field to the control name of our `FormGroup`. We will check for errors in the form controls and then display the appropriate validation error message on the screen.
+سننشئ نموذجًا تفاعليًا (Reactive Form) ونستخدم Bootstrap لإضافة شكل و تصميم باستخدام الـ Cards. سيحتوي رأس البطاقة (Card Header) على عنوان بينما سيحتوي الجزء المركزي منها (Card Body) على حقول النموذج. سنقوم بربط خاصية `formGroup` لـ Tag النموذج `<form>` باسم النموذج الخاص بنا وهو` registerForm`.  
+سيتم استدعاء دالة "onSubmit" عند إرسال النموذج.
+سنقوم أيضًا بربط `formControlName` لكل حقل إدخال باسم عنصر التحكم الخاص بـ `FormGroup`. سوف نتحقق من وجود أخطاء في عناصر التحكم في النموذج ثم نعرض رسالة الخطأ المناسبة على الشاشة.
 
-## Create the nav-bar component
+## إنشاء مكوّن شريط التنقل (The Nav-Bar Component)
 
-Run the following command to create the nav-bar component:
+لإنشاء مكوّن شريط التنقل قم بكتابة الأمر التالي:
 
-```
+```bash
 ng g c nav-bar
 ```
 
-Open `nav-bar.component.html` and put the following code in it:
+افتح ملف `nav-bar.component.html` و اكتب الكود التالي به:
 
 ```html
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
@@ -347,11 +350,11 @@ Open `nav-bar.component.html` and put the following code in it:
 </nav>
 ```
 
-We are adding the navigation link to the reactive form component in the nav bar.
+و بهذا نكون وضعنا رابط الانتقال لـ مكوّن النموذج التفاعلي (Reactive Form Component) في شريط التنقّل (Nav-Bar).
 
-## Update the app component
+## تعديل المكوّن المركزي في التطبيق (The App Component)
 
-Open the `app.component.html` file and put the following code in it:
+افتح ملف `app.component.html` و اكتب الكود التالي به:
 
 ```html
 <app-nav-bar></app-nav-bar>
@@ -360,9 +363,11 @@ Open the `app.component.html` file and put the following code in it:
 </div>
 ```
 
-## Update the App module
+## تعديل وحدة التحكم المركزية في التطبيق (The App Module)
 
-Add the following code in the `app.module.ts` file. We will import the forms module and define the routing for our application. You can refer to [GitHub](https://github.com/AnkitSharma-007/angular-forms-validation/blob/master/src/app/app.module.ts) for the complete source code of this file.
+في ملف وحدة التحكم المركزية سنقوم بعمل Importing لـ Forms Module و تعريف قواعد الـ Routing المناسبة للتطبيق. و يمكنك الرجوع إلى [GitHub](https://github.com/AnkitSharma-007/angular-forms-validation/blob/master/src/app/app.module.ts) للوصول للكود المصدري الكامل لهذا الملف من مستودع الأكواد الخاص بكاتب المقال الأصلي.
+
+أضف الكود التالي لملف `app.module.ts`:
 
 ```js
 import { RouterModule } from '@angular/router';
@@ -381,25 +386,25 @@ import { ReactiveFormsModule } from  '@angular/forms';
 })
 ```
 
-## Execution demo
+## وقت تجربة التطبيق
 
-We will use the following command to start the web server:
+سنستخدم الـ Command التالي كي يبدأ الـ Web Server الخاص بنا و نجرب التطبيق:
 
-```
+```bash
 ng serve -o
 ```
 
-This command will launch the application in your default browser at `http://localhost:4200/`. You can perform all the form validations which we have discussed here.
+ما سيفعله هذا التطبيق أنه سيفتح الرابط `http://localhost:4200` في نافذة جديدة على متصفحك الأساسي و يمكنك حينها أن تتحقق من حقول النموذج لتتأكد من ملاءمتها للشكل الذي برمجناها عليه.
 
-This application is also hosted at [https://ng-forms-validation.herokuapp.com/](https://ng-forms-validation.herokuapp.com/). Navigate to the link and play around with it for a better understanding.
+يمكنك الانتقال إلي [https://ng-forms-validation.herokuapp.com](https://ng-forms-validation.herokuapp.com) إذا ما أردت تجربة نسخة حيّة (live) من هذا التطبيق بنفسك.
 
-## Summary
+## الخلاصة
 
-We have created a sample user registration form using the reactive form approach in Angular. We have implemented the inbuilt validations as well as custom validations to the form. The Bootstrap library is used to style the form.
+قمنا بعمل نموذج تسجيل مستخدم جديد في Angular باستخدام طريقة النماذج التفاعلية (Reactive Forms) و زوّدناها ببعض الـ Validaions التي بنيناها بأنفسنا بالإضافةلاستخدام بعض الـ Validadors الموجودة بالفعل في Angular. و تم استخدام Bootstrap لإضافة Styling للتطبيق.
 
-Get the source code from [GitHub](https://github.com/AnkitSharma-007/angular-forms-validation) and play around with it for a better understanding.
+يمكنك الحصول على [الكود المصدري الكامل للتطبيق من مستودع كاتب المقال الأصلي على GitHub](https://github.com/AnkitSharma-007/angular-forms-validation) و يمكنك التعديل و الإضافة عليه كي يساعدك ذلك على فهم أفضل.
 
-## See Also
+## مقالات مشابهة بقلم الكاتب
 
 - [Localization In Angular Using i18n Tools](https://ankitsharmablogs.com/localization-in-angular-using-i18n-tools/)
 - [Template-Driven Form Validation In Angular](https://ankitsharmablogs.com/template-driven-form-validation-in-angular/)
@@ -407,4 +412,4 @@ Get the source code from [GitHub](https://github.com/AnkitSharma-007/angular-for
 - [Policy-Based Authorization In Angular Using JWT](https://ankitsharmablogs.com/policy-based-authorization-in-angular-using-jwt/)
 - [Facebook Authentication And Authorization In Server-Side Blazor App](https://ankitsharmablogs.com/facebook-authentication-and-authorization-in-server-side-blazor-app/)
 
-You can find other posts like [Reactive Form Validation in Angular](https://ankitsharmablogs.com/reactive-form-validation-in-angular/) on [Ankit Sharma's Blog](https://ankitsharmablogs.com/).
+و يمكنك قراءة مقالات مشابهة لهذا المقال من خلال [مدونة كاتب المقال الأصل Ankit Sharma](https://ankitsharmablogs.com/).
