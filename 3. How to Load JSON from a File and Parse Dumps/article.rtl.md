@@ -1,32 +1,31 @@
-<div dir='rtl'>
+<!-- <div dir='rtl'> -->
 
 <!-- TODO: remove the div tag in the final product -->
 
-# Python Read JSON File – How to Load JSON from a File and Parse Dumps
-# قراءة ملف JSON باستخدام لغة بايثون
+# قراءة ملف JSON باستخدام لغة بايثون - كيفية استخراج JSON من ملف و تحليلُه
 
-![Python Read JSON File – How to Load JSON from a File and Parse Dumps](https://www.freecodecamp.org/news/content/images/size/w2000/2020/08/Read-JSON-image.png)~
+![قراءة ملف JSON باستخدام لغة بايثون - كيفية استخراج JSON من ملف و تحليلُه](https://www.freecodecamp.org/news/content/images/size/w2000/2020/08/Read-JSON-image.png)
 
-Welcome! If you want to learn how to work with JSON files in Python, then this article is for you.
+أهلا بك! إذا أردت معرفة كيفية العمل مع ملفات JSON في Python فهذه هي المقالة المناسبة لك.
 
-**You will learn:**
+**بنهاية المقالة ستتعلّم:**
 
-- Why the JSON format is so important.
-- Its basic structure and data types.
-- How JSON and Python Dictionaries work together in Python.
-- How to work with the Python built-in `json` module.
-- How to convert JSON strings to Python objects and vice versa.
-- How to use `loads()` and `dumps()`
-- How to indent JSON strings automatically.
-- How to read JSON files in Python using `load()`
-- How to write to JSON files in Python using `dump()`
-- And more!
+- ما هي أهمية صيغة الـ JSON.
+- هيكل الـ JSON الأساسي وأنواع البيانات بداخلها.
+- كيفية عمل صيغة الـ JSON مع الـ Dictionaries سويًا في لغة Python.
+- كيفية العمل مع JSON من خلال الوحدة المضمنة (the built-in JSON module) في لغة Python.
+- كيفية تحويل السلاسل النصية (strings) الموجودة على هيئة الـ JSON إلى كائنات (objects) والعكس.
+- كيفية استخدام دالة `loads()` و دالة `dumps()`.
+- كيفية عمل مسافة بادئة (indents) لسلاسل JSON بشكل تلقائي.
+- كيفية قراءة ملفات JSON في بايثون باستخدام `load()`.
+- كيفية الكتابة في ملفات JSON في بايثون باستخدام `dump()`.
+- و أكثر!
 
-Are you ready? Let's begin! ✨
+هل أنت مستعد؟ هيا بنا لنبدأ! ✨
 
-## 🔹 Introduction: What is JSON?
+## 🔹 كتمهيد، ما هي صيغة JSON؟
 
-![](https://www.freecodecamp.org/news/content/images/2020/10/image-98.png)
+![JSON = JavaScript Object Notation](https://www.freecodecamp.org/news/content/images/2020/10/image-98.png)
 
 The JSON format was originally inspired by the syntax of JavaScript (a programming language used for web development). But since then it has become a **language-independent data format** and most of the programming languages that we use today can generate and read JSON.
 
@@ -681,5 +680,4 @@ Finally, there are two important terms that you need to know to work with JSON:
 
 \***\*I really hope you liked my article and found it helpful.\*\*** Now you know how to work with JSON in Python. Follow me on Twitter [@EstefaniaCassN](https://twitter.com/EstefaniaCassN) and [check out my online courses](https://www.udemy.com/user/estefania-cn/).
 
-
-</div>
+<!-- </div> -->
