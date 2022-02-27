@@ -1,6 +1,6 @@
 <!-- <div dir='rtl'> -->
-
 <!-- TODO: remove the div tag in the final product -->
+
 
 # قراءة ملف JSON باستخدام لغة بايثون - كيفية استخراج JSON من ملف و تحليلُه
 
@@ -27,19 +27,17 @@
 
 ![JSON = JavaScript Object Notation](https://www.freecodecamp.org/news/content/images/2020/10/image-98.png)
 
-The JSON format was originally inspired by the syntax of JavaScript (a programming language used for web development). But since then it has become a **language-independent data format** and most of the programming languages that we use today can generate and read JSON.
+تم استلهام تنسيق JSON في الأصل من الكائنات (objects) في لغة JavaScript (لغة برمجة مستخدمة لتطوير الويب).  و منذ ذلك الحين أصبح تنسيق بيانات معتمد لا يختلف باختلاف اللغة و يمكن لمعظم لغات البرمجة التي نستخدمها اليوم إنشاء وقراءة صيغة JSON.
 
-### Importance and Use Cases of JSON
+### أهمية تنسيق JSON و حالات استخدامه
 
-JSON is basically a format used to store or represent data. Its common use cases include web development and configuration files.
+يستخدم JSON عمومًا لتخزين البيانات و عرضها بشمل مفهوم و هي منتشرة الاستخدام كصيغة لملفات التكوين (configuration files) و مجال تطوير الويب.
 
-Let's see why:
-
-- **Web Development:** JSON is commonly used to send data from the server to the client and vice versa in web applications.
+- **تطوير الويب:** تُستخدم صيغة JSON بشكل شائع في تطبيقات الويب للتواصل و إرسال البيانات من الخادم إلى العميل والعكس.
 
 ![](https://www.freecodecamp.org/news/content/images/2020/10/image-65.png)
 
-- **Configuration files:** JSON is also used to store configurations and settings. For example, to create a [Google Chrome App](https://developer.chrome.com/apps/first_app#one), you need to include a JSON file called `manifest.json` to specify the name of the app, its description, current version, and other properties and settings.
+- **ملفات التكوين (configuration files):** تُستخدم صيغة JSON أيضًا لتخزين التكوينات والإعدادات (configurations and settings). فعلى سبيل المثال، لإنشاء [Google Chrome App](https://developer.chrome.com/apps/first_app#one) تحتاج ضمن مجلد مشروعك إلى ملف JSON يسمى `manifest.json` لتحديد اسم التطبيق و وصفه و إصداره الحالي و خصائصه الأخرى و بقية إعداداته.
 
 ![](https://www.freecodecamp.org/news/content/images/2020/10/image-99.png)
 
@@ -679,5 +677,3 @@ Finally, there are two important terms that you need to know to work with JSON:
 - You can write to JSON files to store the content of Python objects in JSON format.
 
 \***\*I really hope you liked my article and found it helpful.\*\*** Now you know how to work with JSON in Python. Follow me on Twitter [@EstefaniaCassN](https://twitter.com/EstefaniaCassN) and [check out my online courses](https://www.udemy.com/user/estefania-cn/).
-
-<!-- </div> -->
