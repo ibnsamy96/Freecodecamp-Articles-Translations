@@ -41,9 +41,8 @@
 
 ![](https://www.freecodecamp.org/news/content/images/2020/10/image-99.png)
 
-## 🔸 JSON Structure and Format
-
-Now that you know what the JSON format is used for, let's see its basic structure with an example that represents the data of a pizza order:
+## 🔸 هيكل و صياغة تنسيق JSON
+الآن بعد أن رأينا سبب استخدام الـ JSON، دعونا نرى هيكلها الأساسي بمثال عبارة عن بيانات طلب بيتزا من أحد المطاعم:
 
 ```json
 {
@@ -60,20 +59,18 @@ Now that you know what the JSON format is used for, let's see its basic structur
 }
 ```
 
-Sample .json file
+و هذه هي الخصائص الأساسية لتنسيق JSON:
 
-These are the main characteristics of the JSON format:
-
-- There is a sequence of key-value pairs surrounded by curly brackets `{}`.
-- Each key is mapped to a particular value using this format:
-
+ - عبارة عن تسلسل من الأزواج و كلّ منهم عبارة عن مفتاح و قيمة (key-value pairs) محاطة بأقواس متعرجة (curly brackets) `{}`.
+ - كل مفتاح (key) يشير إلى قيمة معينة (value) باستخدام التنسيق التالي:
+ 
 ```
 "key": <value>
 ```
 
-💡 **Tip:** The values that require quotes have to be surrounded by double quotes.
+💡 **نصيحة:** إن احتاجت الـ values أن تكون محاطة بعلامات اقتباس (quotes) في حالة كانت نصوص فيجب أن تكون محاطة بعلامات اقتباس مزدوجة (double quotes).
 
-- Key-value pairs are separated by a comma. Only the last pair is not followed by a comma.
+- أزواج الـ key-value مفصولة عن بعضها بفاصلة (comma) و بالتالي الزوج الأخير فقط هو ما لا يتبعه الـ comma.
 
 ```json
 {
@@ -82,7 +79,7 @@ These are the main characteristics of the JSON format:
 }
 ```
 
-💡 **Tip:** We typically format JSON with different levels of indentation to make the data easier to read. In this article, you will learn how to add the indentation automatically with Python.
+💡 **نصيحة:**  لتسهيل قراءة البيانات، نقوم عادةً بتنسيق JSON بمسافات بادئة مختلفة توضّح مستوى عمق كل key. و لتيسير ذلك ففي هذا المقال ستتعلم كيفية إضافة المسافة البادئة تلقائيًا باستخدام Python.
 
 ### JSON Data Types: Keys and Values
 
